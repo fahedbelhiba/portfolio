@@ -149,16 +149,36 @@ section{padding:5rem 0;border-top:1px solid var(--border);}
 .skill-tags{display:flex;flex-wrap:wrap;gap:.45rem;}
 .skill-tag{background:rgba(255,255,255,.05);border:1px solid var(--border);padding:.28rem .65rem;border-radius:6px;font-size:.78rem;font-family:var(--mono);color:var(--text-muted);font-weight:600;transition:all .2s;}
 .skill-tag:hover{background:rgba(14,165,233,.1);border-color:rgba(14,165,233,.3);color:var(--cyan);}
-.cv-wrapper{background:var(--bg-surface);border:1px solid var(--border-cyan);border-radius:20px;padding:2.5rem;box-shadow:0 0 50px rgba(14,165,233,.08);}
-.cv-actions{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
-.cv-card{background:#0A0E18;color:#F1F5F9;border-radius:12px;padding:2rem;border:1px solid var(--border);}
+
+/* Profile & Internship Summary Card */
+.profile-section{padding:5rem 0 3rem;}
+.profile-card{background:linear-gradient(145deg,rgba(13,19,33,0.95),rgba(10,14,26,0.98));border:1px solid var(--border-cyan);border-radius:24px;padding:3rem;position:relative;overflow:hidden;box-shadow:0 0 50px rgba(14,165,233,.1);}
+.profile-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),#818CF8,var(--violet));}
+.profile-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1.5rem;margin-bottom:2rem;padding-bottom:1.75rem;border-bottom:1px solid var(--border);}
+.profile-badge-group{display:flex;flex-direction:column;gap:.5rem;}
+.profile-title{font-size:1.85rem;font-weight:800;letter-spacing:-.02em;color:var(--text);font-family:var(--display);}
+.profile-pitch{font-size:1.08rem;line-height:1.8;color:var(--text-body);margin-bottom:2.25rem;background:rgba(255,255,255,.03);padding:1.5rem 1.75rem;border-radius:14px;border:1px solid rgba(255,255,255,.06);}
+.profile-pitch strong{color:var(--text);font-weight:700;}
+.profile-pitch .highlight{color:var(--cyan);font-weight:700;}
+.roles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-bottom:2.25rem;}
+.role-box{background:rgba(6,8,16,.6);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:all .25s;}
+.role-box:hover{border-color:var(--border-cyan);transform:translateY(-3px);}
+.role-box-title{font-size:.9rem;font-weight:800;color:var(--text);margin-bottom:.35rem;display:flex;align-items:center;gap:.45rem;}
+.role-box-desc{font-size:.78rem;color:var(--text-muted);line-height:1.5;}
+.modalities-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;background:rgba(14,165,233,.06);border:1px solid rgba(14,165,233,.2);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:2.25rem;}
+.modality-item{display:flex;align-items:center;gap:.75rem;}
+.modality-icon{font-size:1.3rem;}
+.modality-label{font-size:.68rem;font-family:var(--mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em;}
+.modality-val{font-size:.88rem;font-weight:700;color:var(--text);}
+.profile-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
+
 footer{padding:3rem 0;border-top:1px solid var(--border);text-align:center;color:var(--text-dim);font-size:.85rem;}
 footer a{color:var(--cyan);text-decoration:none;}
 .footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap;}
 .footer-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--text-muted);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .2s;}
 .footer-link:hover{color:var(--cyan);}
-@media(max-width:960px){.hero{grid-template-columns:1fr;gap:2.5rem;}h1.hero-title{font-size:2.3rem;}.nav-links{display:none;}.sec-title{font-size:1.8rem;}}
-@media(max-width:600px){.projects-grid{grid-template-columns:1fr;}.cv-actions{flex-direction:column;align-items:flex-start;}}
+@media(max-width:960px){.hero{grid-template-columns:1fr;gap:2.5rem;}h1.hero-title{font-size:2.3rem;}.nav-links{display:none;}.sec-title{font-size:1.8rem;}.profile-card{padding:2rem;}}
+@media(max-width:600px){.projects-grid{grid-template-columns:1fr;}.roles-grid{grid-template-columns:1fr;}.modalities-bar{grid-template-columns:1fr;}}
 </style>
 <header>
   <div class="container nav-inner">
@@ -168,6 +188,7 @@ footer a{color:var(--cyan);text-decoration:none;}
       <li><a href="#experience"><span class="en">Experience</span><span class="fr">Expériences</span></a></li>
       <li><a href="#education"><span class="en">Education</span><span class="fr">Formations</span></a></li>
       <li><a href="#skills"><span class="en">Skills</span><span class="fr">Compétences</span></a></li>
+      <li><a href="#profile"><span class="en">Profile</span><span class="fr">Profil</span></a></li>
     </ul>
     <div class="nav-controls">
       <button class="lang-btn" id="langBtn">🌐 FR / EN</button>
@@ -182,11 +203,26 @@ footer a{color:var(--cyan);text-decoration:none;}
 <main class="container">
   <section class="hero">
     <div>
-      <div class="badge-open"><span class="pulse"></span><span class="en">FINAL-YEAR INTERNSHIP · FROM MARCH 2027</span><span class="fr">STAGE FIN D'ÉTUDES · DÈS MARS 2027</span></div>
-      <h1 class="hero-title">Fahd BELHIBA<br/><span class="grad en">Android Developer<br/>& Connected Mobility</span><span class="grad fr">Développeur Mobile<br/>& Mobilité Connectée</span></h1>
-      <p class="hero-sub"><span class="en">Final-Year Master in <strong>IT for Smart & Sustainable Mobility (IT4SSM)</strong> — INSA Hauts-de-France</span><span class="fr">Étudiant Master <strong>IT4SSM</strong> — INSA Hauts-de-France</span></p>
-      <p class="hero-bio en">Passionate about native Android, connected vehicle systems, BLE/Wi-Fi Direct protocols, and sustainable mobility. Seeking a 6-month final-year internship from March 2027.</p>
-      <p class="hero-bio fr">Passionné par Android natif, les systèmes embarqués connectés, BLE/Wi-Fi Direct et la mobilité durable. Je recherche un stage de fin d'études de 6 mois dès mars 2027.</p>
+      <div class="badge-open">
+        <span class="pulse"></span>
+        <span class="en">FINAL-YEAR INTERNSHIP · FROM MARCH 2027</span>
+        <span class="fr">STAGE FIN D'ÉTUDES · DÈS MARS 2027</span>
+      </div>
+      <h1 class="hero-title">
+        Fahd BELHIBA<br/>
+        <span class="grad en">Android Developer<br/>& Connected Mobility</span>
+        <span class="grad fr">Développeur Mobile<br/>& Mobilité Connectée</span>
+      </h1>
+      <p class="hero-sub">
+        <span class="en">Final-Year Master in <strong>IT for Smart & Sustainable Mobility (IT4SSM)</strong> — INSA Hauts-de-France</span>
+        <span class="fr">Étudiant Master <strong>IT4SSM</strong> — INSA Hauts-de-France</span>
+      </p>
+      <p class="hero-bio en">
+        Passionate about native Android, connected vehicle systems, BLE/Wi-Fi Direct protocols, and sustainable mobility. Seeking a 6-month final-year internship from March 2027.
+      </p>
+      <p class="hero-bio fr">
+        Passionné par Android natif, les systèmes embarqués connectés, BLE/Wi-Fi Direct et la mobilité durable. Je recherche un stage de fin d'études de 6 mois dès mars 2027.
+      </p>
       <div class="meta-pills">
         <div class="meta-pill">📍 Valenciennes (59300), France</div>
         <div class="meta-pill">✉️ <a href="mailto:belhibafahd@outlook.fr">belhibafahd@outlook.fr</a></div>
@@ -194,9 +230,9 @@ footer a{color:var(--cyan);text-decoration:none;}
         <div class="meta-pill">💼 <a href="https://github.com/fahedbelhiba" target="_blank">fahedbelhiba</a></div>
       </div>
       <div class="hero-btns">
-        <a href="/CV_Fahd_BELHIBA_Mobile.pdf" download class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span class="en">Download CV (PDF)</span><span class="fr">Télécharger CV (PDF)</span>
+        <a href="mailto:belhibafahd@outlook.fr" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span class="en">Get in Touch</span><span class="fr">Me Contacter</span>
         </a>
         <a href="#projects" class="btn btn-secondary"><span class="en">View 13 Projects →</span><span class="fr">Voir les 13 Projets →</span></a>
       </div>
@@ -218,7 +254,7 @@ footer a{color:var(--cyan);text-decoration:none;}
         </div>
         <div class="gauge">
           <div class="gauge-center">
-            <svg width="78" height="78" viewBox="0 0 78 78"><circle class="g-bg" cx="39" cy="39" r="33"/><circle class="g-prog" cx="39" cy="39" r="33" style="stroke-dashoffset:72;"/></svg>
+            <svg width="78" height="78" viewBox="0 0 78 78"><circle class="g-bg" cx="39" cy="39" r="33"/><circle class="g-prog" id="tempValCircle" cx="39" cy="39" r="33" style="stroke-dashoffset:72;"/></svg>
             <div class="gauge-label"><span class="gauge-val" id="tempVal">21°</span><span class="gauge-sub">HVAC</span></div>
           </div>
           <div class="gauge-note" style="color:var(--cyan);">Target: <span id="targetVal">21.0</span>°C</div>
@@ -323,6 +359,100 @@ footer a{color:var(--cyan);text-decoration:none;}
       ))}
     </div>
   </section>
+
+  <!-- Profile & Internship Search Presentation Section -->
+  <section id="profile" class="profile-section">
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-badge-group">
+          <div class="badge-open" style="margin-bottom:0.5rem;">
+            <span class="pulse"></span>
+            <span class="en">INTERNSHIP SEARCH · 2027</span>
+            <span class="fr">RECHERCHE DE STAGE · 2027</span>
+          </div>
+          <h2 class="profile-title">
+            <span class="en">Profile & <span class="grad">Internship Objective</span></span>
+            <span class="fr">Profil & <span class="grad">Objectif de Stage</span></span>
+          </h2>
+        </div>
+        <div class="nav-badge" style="font-size:0.85rem;padding:0.4rem 1rem;">
+          INSA Hauts-de-France · IT4SSM
+        </div>
+      </div>
+
+      <div class="profile-pitch en">
+        Final-Year Master's student in <strong class="highlight">IT4SSM (INSA Hauts-de-France)</strong> specializing in software development, connected systems, and smart mobility (<strong class="highlight">Native Android, BLE & IoT</strong>). Seeking a <strong class="highlight">6-month final-year internship starting March 2027</strong> in <strong class="highlight">Native Android Development, Connected Vehicle Systems, Embedded/IoT Engineering, or Mobile Software Engineering</strong>.
+      </div>
+      <div class="profile-pitch fr">
+        Étudiant en dernière année de Master en <strong class="highlight">IT4SSM (INSA Hauts-de-France)</strong> spécialisé en développement logiciel, systèmes connectés et mobilité intelligente (<strong class="highlight">Android natif, BLE & IoT</strong>). Je recherche un <strong class="highlight">stage de fin d'études de 6 mois dès mars 2027</strong> en <strong class="highlight">Développement Android Natif, Systèmes Véhiculaires Connectés, Ingénierie IoT ou Ingénierie Logicielle Mobile</strong>.
+      </div>
+
+      <div class="roles-grid">
+        <div class="role-box">
+          <div class="role-box-title">📱 <span class="en">Native Android Dev</span><span class="fr">Dév. Android Natif</span></div>
+          <div class="role-box-desc en">Kotlin, Jetpack Compose, Coroutines, StateFlow, Room DB, MVVM architecture & Clean Code.</div>
+          <div class="role-box-desc fr">Kotlin, Jetpack Compose, Coroutines, StateFlow, Room DB, architecture MVVM et Clean Code.</div>
+        </div>
+        <div class="role-box">
+          <div class="role-box-title">🚗 <span class="en">Connected Vehicle Systems</span><span class="fr">Systèmes Connectés & Mobilité</span></div>
+          <div class="role-box-desc en">Bluetooth Low Energy (GATT), Wi-Fi Direct P2P, OBD-II/CAN diagnostics & in-cabin telemetry.</div>
+          <div class="role-box-desc fr">Bluetooth Low Energy (GATT), Wi-Fi Direct P2P, diagnostics OBD-II/CAN et télémétrie embarquée.</div>
+        </div>
+        <div class="role-box">
+          <div class="role-box-title">📡 <span class="en">Embedded IoT & Firmware</span><span class="fr">Ingénierie IoT & Embarqué</span></div>
+          <div class="role-box-desc en">ESP32, C++/Arduino, MAX30102 sensors, FreeRTOS, MQTT protocols & Firebase edge sync.</div>
+          <div class="role-box-desc fr">ESP32, C++/Arduino, capteurs MAX30102, FreeRTOS, protocoles MQTT et synchro Firebase.</div>
+        </div>
+        <div class="role-box">
+          <div class="role-box-title">⚙️ <span class="en">Backend & Cloud Integration</span><span class="fr">Backend & Intégration Cloud</span></div>
+          <div class="role-box-desc en">Java Spring Boot, REST APIs, SQL/NoSQL transactional persistence, Docker & GCP sync.</div>
+          <div class="role-box-desc fr">Java Spring Boot, APIs REST, persistance SQL/NoSQL transactionnelle, Docker et GCP.</div>
+        </div>
+      </div>
+
+      <div class="modalities-bar">
+        <div class="modality-item">
+          <div class="modality-icon">⏱️</div>
+          <div>
+            <div class="modality-label en">Duration</div><div class="modality-label fr">Durée</div>
+            <div class="modality-val en">6 Months (Final-Year)</div><div class="modality-val fr">6 Mois (Stage PFE)</div>
+          </div>
+        </div>
+        <div class="modality-item">
+          <div class="modality-icon">📅</div>
+          <div>
+            <div class="modality-label en">Availability</div><div class="modality-label fr">Disponibilité</div>
+            <div class="modality-val en">Starting March 2027</div><div class="modality-val fr">Dès Mars 2027</div>
+          </div>
+        </div>
+        <div class="modality-item">
+          <div class="modality-icon">📍</div>
+          <div>
+            <div class="modality-label en">Location</div><div class="modality-label fr">Localisation</div>
+            <div class="modality-val">France / Hybrid / Remote</div>
+          </div>
+        </div>
+        <div class="modality-item">
+          <div class="modality-icon">🎓</div>
+          <div>
+            <div class="modality-label en">Status</div><div class="modality-label fr">Statut</div>
+            <div class="modality-val">Master 2 IT4SSM (INSA)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-actions">
+        <a href="mailto:belhibafahd@outlook.fr" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span class="en">Contact via Email</span><span class="fr">Contacter par Email</span>
+        </a>
+        <a href="https://github.com/fahedbelhiba" target="_blank" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span class="en">Explore GitHub</span><span class="fr">Explorer GitHub</span>
+        </a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -330,7 +460,7 @@ footer a{color:var(--cyan);text-decoration:none;}
     <div class="footer-links">
       <a href="https://github.com/fahedbelhiba" target="_blank" class="footer-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
       <a href="mailto:belhibafahd@outlook.fr" class="footer-link">✉️ belhibafahd@outlook.fr</a>
-      <a href="/CV_Fahd_BELHIBA_Mobile.pdf" download class="footer-link">📄 Download CV</a>
+      <a href="tel:+33605670216" class="footer-link">📞 +33 6 05 67 02 16</a>
     </div>
     <p>© 2026 Fahd BELHIBA · Built with <a href="https://astro.build" target="_blank">Astro</a> · Deployed on <a href="https://vercel.com" target="_blank">Vercel</a></p>
   </div>
