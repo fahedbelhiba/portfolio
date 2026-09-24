@@ -27,8 +27,20 @@ const awards = [
     eventFr: "Hackathon Douane Tunisienne — Surveillance & Frontières Intelligentes",
     titleEn: "Autonomous Border Surveillance UAV / Fixed-Wing Drone",
     titleFr: "Drone Autonome à Voilure Fixe pour la Surveillance des Frontières",
-    image: "/images/customs-drone.jpg",
-    imageAlt: "Fahd BELHIBA presenting the border surveillance fixed-wing drone at Tunisian Customs Scientific Forum",
+    images: [
+      {
+        src: "/images/customs-drone-presentation.jpg",
+        alt: "Fixed-Wing UAV Full Airframe & Presentation at Customs Scientific Forum",
+        captionEn: "Fixed-wing surveillance UAV airframe & official presentation",
+        captionFr: "Structure aérodynamique à voilure fixe & présentation officielle"
+      },
+      {
+        src: "/images/customs-drone-detail.jpg",
+        alt: "UAV Avionics, Propulsion Motor & Sensor Wiring Mount",
+        captionEn: "Close-up: Avionics, brushless motor & telemetry sensors",
+        captionFr: "Détail : Avionique embarquée, moteur brushless & capteurs"
+      }
+    ],
     summaryEn: "Engineered and built an autonomous fixed-wing drone with embedded computing, sensor telemetry, and live video downlink designed for border security and perimeter surveillance.",
     summaryFr: "Conception et fabrication d'un drone autonome à voilure fixe avec calcul embarqué, télémétrie capteurs et flux vidéo en direct pour la surveillance des frontières.",
     pointsEn: [
@@ -163,11 +175,13 @@ section{padding:5rem 0;border-top:1px solid var(--border);}
 
 /* Hackathons & Awards */
 .awards-grid{display:grid;grid-template-columns:1fr;gap:2rem;}
-.award-card{background:linear-gradient(145deg,rgba(13,19,33,0.95),rgba(10,14,26,0.98));border:1px solid var(--border-cyan);border-radius:20px;padding:2.25rem;display:grid;grid-template-columns:320px 1fr;gap:2.25rem;align-items:center;box-shadow:0 0 40px rgba(14,165,233,.08);transition:all .3s;}
+.award-card{background:linear-gradient(145deg,rgba(13,19,33,0.95),rgba(10,14,26,0.98));border:1px solid var(--border-cyan);border-radius:20px;padding:2.25rem;display:grid;grid-template-columns:380px 1fr;gap:2.25rem;align-items:center;box-shadow:0 0 40px rgba(14,165,233,.08);transition:all .3s;}
 .award-card:hover{border-color:rgba(245,158,11,.5);box-shadow:0 0 45px rgba(245,158,11,.15);transform:translateY(-3px);}
-.award-img-container{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);aspect-ratio:16/10;background:#05070e;box-shadow:0 8px 25px rgba(0,0,0,0.4);}
+.award-gallery{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+.award-img-container{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);aspect-ratio:4/3;background:#05070e;box-shadow:0 6px 20px rgba(0,0,0,0.4);display:flex;flex-direction:column;}
 .award-img{width:100%;height:100%;object-fit:cover;transition:transform .4s cubic-bezier(.16,1,.3,1);}
-.award-img-container:hover .award-img{transform:scale(1.04);}
+.award-img-container:hover .award-img{transform:scale(1.05);}
+.award-img-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);font-size:.65rem;font-family:var(--mono);color:#fff;padding:.6rem .5rem .35rem;font-weight:600;text-align:center;line-height:1.2;}
 .award-content{display:flex;flex-direction:column;gap:.75rem;}
 .award-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;}
 .award-event{font-family:var(--mono);font-size:.78rem;color:var(--cyan);font-weight:700;margin-bottom:.2rem;}
@@ -226,7 +240,7 @@ footer a{color:var(--cyan);text-decoration:none;}
 .footer-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--text-muted);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .2s;}
 .footer-link:hover{color:var(--cyan);}
 @media(max-width:960px){.hero{grid-template-columns:1fr;gap:2.5rem;}h1.hero-title{font-size:2.3rem;}.nav-links{display:none;}.sec-title{font-size:1.8rem;}.award-card{grid-template-columns:1fr;gap:1.5rem;}.profile-card{padding:2rem;}}
-@media(max-width:600px){.projects-grid{grid-template-columns:1fr;}.roles-grid{grid-template-columns:1fr;}.modalities-bar{grid-template-columns:1fr;}}
+@media(max-width:600px){.projects-grid{grid-template-columns:1fr;}.roles-grid{grid-template-columns:1fr;}.modalities-bar{grid-template-columns:1fr;}.award-gallery{grid-template-columns:1fr;}}
 </style>
 <header>
   <div class="container nav-inner">
@@ -303,7 +317,7 @@ footer a{color:var(--cyan);text-decoration:none;}
         </div>
         <div class="gauge">
           <div class="gauge-center">
-            <svg width="78" height="78" viewBox="0 0 78 78"><circle class="g-bg" cx="39" cy="39" r="33"/><circle class="g-prog" cx="39" cy="39" r="33" style="stroke-dashoffset:72;"/></svg>
+            <svg width="78" height="78" viewBox="0 0 78 78"><circle class="g-bg" cx="39" cy="39" r="33"/><circle class="g-prog" id="tempValCircle" cx="39" cy="39" r="33" style="stroke-dashoffset:72;"/></svg>
             <div class="gauge-label"><span class="gauge-val" id="tempVal">21°</span><span class="gauge-sub">HVAC</span></div>
           </div>
           <div class="gauge-note" style="color:var(--cyan);">Target: <span id="targetVal">21.0</span>°C</div>
@@ -365,8 +379,16 @@ footer a{color:var(--cyan);text-decoration:none;}
     <div class="awards-grid">
       {awards.map(a => (
         <div class="award-card">
-          <div class="award-img-container">
-            <img src={a.image} alt={a.imageAlt} class="award-img" loading="lazy" />
+          <div class="award-gallery">
+            {a.images.map(img => (
+              <div class="award-img-container">
+                <img src={img.src} alt={img.alt} class="award-img" loading="lazy" />
+                <div class="award-img-caption">
+                  <span class="en">{img.captionEn}</span>
+                  <span class="fr">{img.captionFr}</span>
+                </div>
+              </div>
+            ))}
           </div>
           <div class="award-content">
             <div class="award-top">
