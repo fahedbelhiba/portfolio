@@ -17,6 +17,36 @@ const projects = [
   { id:"mqtt-iot-gateway", badge:"ESP32 · MQTT · Python", badgeClass:"badge-iot", year:"2024–2026", category:"iot android", titleEn:"MQTT IoT Gateway — ESP32 + Python + Android", titleFr:"Passerelle IoT MQTT — ESP32 + Python + Android", summaryEn:"ESP32 MQTT IoT gateway bridging DHT22, BMP280 and pulse sensors to cloud broker with Python analytics and Android monitoring.", summaryFr:"Passerelle IoT ESP32 connectant capteurs DHT22, BMP280 et pouls au cloud MQTT avec analytics Python et monitoring Android.", pointsEn:["Multi-sensor MQTT publish with TLS to HiveMQ, relay control via cmd topic.","Python subscriber storing to InfluxDB + Grafana live dashboard + anomaly alerts.","Android Paho MQTT client with live cards, relay toggle and push notifications."], pointsFr:["Publication MQTT multi-capteurs TLS vers HiveMQ, contrôle relais via topic cmd.","Subscriber Python vers InfluxDB + dashboard Grafana + alertes d'anomalies.","Client Android Paho MQTT avec cartes live, toggle relais et notifications push."], tech:["ESP32","MQTT","Python","InfluxDB","Kotlin","Android","Git"], github:"https://github.com/fahedbelhiba/mqtt-iot-gateway" }
 ];
 
+const awards = [
+  {
+    id: "tunisian-customs-drone",
+    badge: "🥇 Medal & Distinction",
+    badgeClass: "badge-medal",
+    year: "Customs Hackathon",
+    eventEn: "Tunisian Smart Customs Hackathon — Smart Border Surveillance",
+    eventFr: "Hackathon Douane Tunisienne — Surveillance & Frontières Intelligentes",
+    titleEn: "Autonomous Border Surveillance UAV / Fixed-Wing Drone",
+    titleFr: "Drone Autonome à Voilure Fixe pour la Surveillance des Frontières",
+    image: "/images/customs-drone.jpg",
+    imageAlt: "Fahd BELHIBA presenting the border surveillance fixed-wing drone at Tunisian Customs Scientific Forum",
+    summaryEn: "Engineered and built an autonomous fixed-wing drone with embedded computing, sensor telemetry, and live video downlink designed for border security and perimeter surveillance.",
+    summaryFr: "Conception et fabrication d'un drone autonome à voilure fixe avec calcul embarqué, télémétrie capteurs et flux vidéo en direct pour la surveillance des frontières.",
+    pointsEn: [
+      "Fixed-wing aerodynamic airframe engineered for extended range reconnaissance and perimeter patrolling.",
+      "Embedded avionics powered by Raspberry Pi and ROS 2 handling real-time telemetry, GPS waypoint navigation, and video stream.",
+      "Telemetry downlink protocol streaming altitude, airspeed, GPS coordinates, and battery health to Ground Control Station (GCS).",
+      "Awarded Official Medal & Distinction by the Scientific Committee of Tunisian Customs."
+    ],
+    pointsFr: [
+      "Châssis aérodynamique à voilure fixe conçu pour des missions de patrouille et reconnaissance à longue portée.",
+      "Avionique embarquée avec Raspberry Pi et ROS 2 gérant la télémétrie temps réel, le routage waypoints GPS et le flux vidéo.",
+      "Protocole de télémétrie transmettant altitude, vitesse, coordonnées GPS et santé batterie à la station sol (GCS).",
+      "Récompensé par une Médaille d'Honneur et Distinction Officielle par le Comité Scientifique de la Douane Tunisienne."
+    ],
+    tech: ["ROS 2", "Raspberry Pi", "Embedded Linux", "Python", "C++", "UAV Telemetry", "Computer Vision", "Sensors", "IoT"]
+  }
+];
+
 const experiences = [
   { org:"Association Jeunes Science Tunis — Tunisia", period:"Jan 2023 – Jun 2023", roleEn:"Mobile & Web Development Intern (Final-Year)", roleFr:"Stagiaire Développement Mobile & Web — Fin d'études", descEn:"Mobile app + admin interface development", descFr:"Développement d'application mobile et interface d'administration", pointsEn:["Mobile app for managing activities, members and QR Code attendance tracking.","Admin interface development and SQL data management.","Testing, bug fixing and UX improvements."], pointsFr:["Application mobile de gestion des activités, adhérents et présences par QR Code.","Interface d'administration et gestion des données SQL.","Tests, correction d'anomalies et amélioration de l'ergonomie."], tech:["Ionic","Vue.js","Laravel","PHP","SQL","API REST","Trello"] },
   { org:"ALLIANCE SYNERGY — Tunis, Tunisia", period:"Jan 2022 – Mar 2022", roleEn:"Mobile Development Intern — Kotlin & BLE", roleFr:"Stagiaire Développement Mobile — Kotlin & BLE", descEn:"Android mobile dev in Kotlin & BLE scanning", descFr:"Développement mobile Android en Kotlin & scan BLE", pointsEn:["Android Kotlin app: BLE scanning, device discovery, runtime permissions, lifecycle management.","Functional testing, bug correction, Git version control."], pointsFr:["Application Android Kotlin : scan BLE, découverte de périphériques, permissions runtime, cycle de vie.","Tests fonctionnels, correction d'anomalies, versionnement Git."], tech:["Kotlin","Android Studio","Android SDK","BLE","Git"] },
@@ -40,7 +70,7 @@ const skills = [
 ---
 <Layout title="Fahd BELHIBA | Android Developer & Connected Mobility">
 <style>
-:root{--bg:#060810;--bg-surface:rgba(13,19,33,0.9);--border:rgba(255,255,255,0.08);--border-cyan:rgba(56,189,248,0.3);--cyan:#0EA5E9;--cyan-dark:#0284C7;--blue:#2563EB;--violet:#7C3AED;--emerald:#10B981;--text:#F1F5F9;--text-body:#CBD5E1;--text-muted:#94A3B8;--text-dim:#64748B;--font:'Plus Jakarta Sans',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace;--display:'Space Grotesk',sans-serif;}
+:root{--bg:#060810;--bg-surface:rgba(13,19,33,0.9);--border:rgba(255,255,255,0.08);--border-cyan:rgba(56,189,248,0.3);--cyan:#0EA5E9;--cyan-dark:#0284C7;--blue:#2563EB;--violet:#7C3AED;--emerald:#10B981;--amber:#F59E0B;--text:#F1F5F9;--text-body:#CBD5E1;--text-muted:#94A3B8;--text-dim:#64748B;--font:'Plus Jakarta Sans',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace;--display:'Space Grotesk',sans-serif;}
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text-body);font-family:var(--font);overflow-x:hidden;background-image:radial-gradient(ellipse at 15% 10%,rgba(14,165,233,.12) 0%,transparent 50%),radial-gradient(ellipse at 85% 80%,rgba(124,58,237,.1) 0%,transparent 50%);background-attachment:fixed;}
@@ -50,8 +80,8 @@ header{position:sticky;top:0;z-index:100;background:rgba(6,8,16,.9);backdrop-fil
 .nav-inner{display:flex;justify-content:space-between;align-items:center;}
 .nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none;font-weight:800;font-size:1.2rem;color:var(--text);font-family:var(--display);}
 .nav-badge{font-size:.7rem;font-family:var(--mono);color:var(--cyan);background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.3);padding:.2rem .55rem;border-radius:9999px;font-weight:700;}
-.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center;}
-.nav-links a{color:var(--text-muted);text-decoration:none;font-size:.88rem;font-weight:600;transition:color .2s;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .2s;}
 .nav-links a:hover{color:var(--cyan);}
 .nav-controls{display:flex;align-items:center;gap:.75rem;}
 .btn-cv{background:linear-gradient(135deg,var(--cyan-dark),var(--blue));color:#fff;padding:.45rem 1rem;border-radius:8px;font-weight:700;font-size:.82rem;display:inline-flex;align-items:center;gap:.4rem;text-decoration:none;transition:all .2s;box-shadow:0 4px 15px rgba(2,132,199,.4);}
@@ -118,6 +148,7 @@ section{padding:5rem 0;border-top:1px solid var(--border);}
 .badge-mobility{background:rgba(124,58,237,.15);color:#A78BFA;border:1px solid rgba(124,58,237,.3);}
 .badge-connected{background:rgba(16,185,129,.15);color:#34D399;border:1px solid rgba(16,185,129,.3);}
 .badge-iot{background:rgba(251,146,60,.15);color:#FB923C;border:1px solid rgba(251,146,60,.3);}
+.badge-medal{background:rgba(245,158,11,.15);color:#FBBF24;border:1px solid rgba(245,158,11,.35);font-weight:800;}
 .proj-year{font-family:var(--mono);font-size:.73rem;color:var(--text-dim);font-weight:700;}
 .proj-title{font-size:1.15rem;font-weight:800;color:var(--text);margin-bottom:.55rem;}
 .proj-summary{font-size:.86rem;color:var(--text-muted);line-height:1.65;margin-bottom:1.1rem;flex-grow:1;}
@@ -129,6 +160,23 @@ section{padding:5rem 0;border-top:1px solid var(--border);}
 .pill{font-size:.65rem;font-family:var(--mono);background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text-muted);padding:.18rem .5rem;border-radius:4px;font-weight:600;}
 .gh-link{display:inline-flex;align-items:center;gap:.35rem;font-size:.73rem;font-weight:700;color:var(--text-muted);text-decoration:none;font-family:var(--mono);padding:.28rem .6rem;border:1px solid var(--border);border-radius:6px;transition:all .2s;white-space:nowrap;}
 .gh-link:hover{color:var(--cyan);border-color:var(--border-cyan);}
+
+/* Hackathons & Awards */
+.awards-grid{display:grid;grid-template-columns:1fr;gap:2rem;}
+.award-card{background:linear-gradient(145deg,rgba(13,19,33,0.95),rgba(10,14,26,0.98));border:1px solid var(--border-cyan);border-radius:20px;padding:2.25rem;display:grid;grid-template-columns:320px 1fr;gap:2.25rem;align-items:center;box-shadow:0 0 40px rgba(14,165,233,.08);transition:all .3s;}
+.award-card:hover{border-color:rgba(245,158,11,.5);box-shadow:0 0 45px rgba(245,158,11,.15);transform:translateY(-3px);}
+.award-img-container{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);aspect-ratio:16/10;background:#05070e;box-shadow:0 8px 25px rgba(0,0,0,0.4);}
+.award-img{width:100%;height:100%;object-fit:cover;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+.award-img-container:hover .award-img{transform:scale(1.04);}
+.award-content{display:flex;flex-direction:column;gap:.75rem;}
+.award-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;}
+.award-event{font-family:var(--mono);font-size:.78rem;color:var(--cyan);font-weight:700;margin-bottom:.2rem;}
+.award-title{font-size:1.35rem;font-weight:800;color:var(--text);letter-spacing:-.015em;font-family:var(--display);}
+.award-summary{font-size:.9rem;color:var(--text-muted);line-height:1.7;}
+.award-points{list-style:none;display:flex;flex-direction:column;gap:.45rem;margin:.5rem 0;}
+.award-points li{font-size:.84rem;color:var(--text-body);display:flex;align-items:flex-start;gap:.5rem;line-height:1.55;}
+.award-points li::before{content:"★";color:#FBBF24;flex-shrink:0;font-size:.8rem;}
+
 .timeline{position:relative;border-left:2px solid rgba(14,165,233,.2);margin-left:1rem;padding-left:2.25rem;display:flex;flex-direction:column;gap:2rem;}
 .tl-node{position:relative;}
 .tl-dot{position:absolute;left:-2.85rem;top:.35rem;width:15px;height:15px;border-radius:50%;background:var(--bg);border:3px solid var(--cyan);box-shadow:0 0 12px rgba(14,165,233,.5);}
@@ -177,7 +225,7 @@ footer a{color:var(--cyan);text-decoration:none;}
 .footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap;}
 .footer-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--text-muted);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .2s;}
 .footer-link:hover{color:var(--cyan);}
-@media(max-width:960px){.hero{grid-template-columns:1fr;gap:2.5rem;}h1.hero-title{font-size:2.3rem;}.nav-links{display:none;}.sec-title{font-size:1.8rem;}.profile-card{padding:2rem;}}
+@media(max-width:960px){.hero{grid-template-columns:1fr;gap:2.5rem;}h1.hero-title{font-size:2.3rem;}.nav-links{display:none;}.sec-title{font-size:1.8rem;}.award-card{grid-template-columns:1fr;gap:1.5rem;}.profile-card{padding:2rem;}}
 @media(max-width:600px){.projects-grid{grid-template-columns:1fr;}.roles-grid{grid-template-columns:1fr;}.modalities-bar{grid-template-columns:1fr;}}
 </style>
 <header>
@@ -185,6 +233,7 @@ footer a{color:var(--cyan);text-decoration:none;}
     <a href="#" class="nav-logo">Fahd BELHIBA <span class="nav-badge">IT4SSM</span></a>
     <ul class="nav-links">
       <li><a href="#projects"><span class="en">Projects</span><span class="fr">Projets</span></a></li>
+      <li><a href="#awards"><span class="en">Awards & Hackathons</span><span class="fr">Hackathons & Prix</span></a></li>
       <li><a href="#experience"><span class="en">Experience</span><span class="fr">Expériences</span></a></li>
       <li><a href="#education"><span class="en">Education</span><span class="fr">Formations</span></a></li>
       <li><a href="#skills"><span class="en">Skills</span><span class="fr">Compétences</span></a></li>
@@ -254,7 +303,7 @@ footer a{color:var(--cyan);text-decoration:none;}
         </div>
         <div class="gauge">
           <div class="gauge-center">
-            <svg width="78" height="78" viewBox="0 0 78 78"><circle class="g-bg" cx="39" cy="39" r="33"/><circle class="g-prog" id="tempValCircle" cx="39" cy="39" r="33" style="stroke-dashoffset:72;"/></svg>
+            <svg width="78" height="78" viewBox="0 0 78 78"><circle class="g-bg" cx="39" cy="39" r="33"/><circle class="g-prog" cx="39" cy="39" r="33" style="stroke-dashoffset:72;"/></svg>
             <div class="gauge-label"><span class="gauge-val" id="tempVal">21°</span><span class="gauge-sub">HVAC</span></div>
           </div>
           <div class="gauge-note" style="color:var(--cyan);">Target: <span id="targetVal">21.0</span>°C</div>
@@ -298,6 +347,43 @@ footer a{color:var(--cyan);text-decoration:none;}
           <div class="proj-footer">
             <div class="tech-pills">{p.tech.map(t => <span class="pill">{t}</span>)}</div>
             <a href={p.github} target="_blank" class="gh-link"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Hackathons & Awards Section -->
+  <section id="awards">
+    <div class="sec-header">
+      <span class="sec-pre en">Competitions & Engineering Honors</span><span class="sec-pre fr">Compétitions & Distinctions</span>
+      <h2 class="sec-title"><span class="en">Hackathons & <span class="grad">Awards</span></span><span class="fr">Hackathons & <span class="grad">Prix</span></span></h2>
+      <p class="sec-desc en">Engineering hackathons and honors reflecting hands-on robotics, autonomous systems, embedded electronics, and cross-functional team collaboration.</p>
+      <p class="sec-desc fr">Défis technologiques et distinctions attestant de réalisations concrètes en robotique, systèmes autonomes, électronique embarquée et travail d'équipe.</p>
+    </div>
+
+    <div class="awards-grid">
+      {awards.map(a => (
+        <div class="award-card">
+          <div class="award-img-container">
+            <img src={a.image} alt={a.imageAlt} class="award-img" loading="lazy" />
+          </div>
+          <div class="award-content">
+            <div class="award-top">
+              <span class={`proj-badge ${a.badgeClass}`}>{a.badge}</span>
+              <span class="proj-year">{a.year}</span>
+            </div>
+            <div class="award-event en">{a.eventEn}</div>
+            <div class="award-event fr">{a.eventFr}</div>
+            <h3 class="award-title en">{a.titleEn}</h3>
+            <h3 class="award-title fr">{a.titleFr}</h3>
+            <p class="award-summary en">{a.summaryEn}</p>
+            <p class="award-summary fr">{a.summaryFr}</p>
+            <ul class="award-points en">{a.pointsEn.map(pt => <li>{pt}</li>)}</ul>
+            <ul class="award-points fr">{a.pointsFr.map(pt => <li>{pt}</li>)}</ul>
+            <div class="proj-footer" style="padding-top:0.75rem;">
+              <div class="tech-pills">{a.tech.map(t => <span class="pill">{t}</span>)}</div>
+            </div>
           </div>
         </div>
       ))}
