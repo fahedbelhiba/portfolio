@@ -1,0 +1,411 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  { id:"vehicle-ble-companion", badge:"Android BLE · Vehicle Companion", badgeClass:"badge-connected", year:"2024–2026", category:"android ble mobility", titleEn:"Vehicle BLE Companion App & Scanner", titleFr:"Application Compagnon Véhicule & Scanner BLE", summaryEn:"Native Android Kotlin app for real-time vehicle telemetry and remote control via Bluetooth Low Energy GATT.", summaryFr:"Application Android Kotlin pour le contrôle distant et la télémétrie en temps réel via BLE GATT.", pointsEn:["Hands-free welcome zone: Driver approach detection via calibrated RSSI threshold (-65 dBm) with auto-unlock.", "Live GATT telemetry: Battery SoC%, estimated range km, cabin temperature notifications.", "Remote commands: Door lock/unlock & climate pre-conditioning encoding."], pointsFr:["Zone d'accueil mains-libres : Détection conducteur par seuil RSSI calibré (-65 dBm) avec déverrouillage automatique.", "Télémétrie GATT en direct : SoC%, autonomie restante, température habitacle.", "Commandes distantes encodées : Verrouillage/déverrouillage et pré-conditionnement thermique."], tech:["Kotlin","Android BLE","GATT Client","MVVM","StateFlow","Coroutines","Git"], github:"https://github.com/fahedbelhiba/vehicle-ble-companion" },
+  { id:"driver-id-profile-sync", badge:"Offline-First · Cloud Sync", badgeClass:"badge-mobility", year:"2024–2026", category:"mobility ble", titleEn:"Driver Profile & Cloud Sync Service", titleFr:"Profil Conducteur & Synchronisation Cloud", summaryEn:"Autonomous in-cabin driver identification and real-time synchronization of vehicle preferences across vehicles.", summaryFr:"Reconnaissance automatique du conducteur et adaptation instantanée des réglages personnalisés.", pointsEn:["Offline-First architecture: High-speed local Room cache for instant zero-latency physical adjustments.", "Secure async GCP/NoSQL background replication for cross-vehicle profile portability.", "Smart conflict resolution: local-wins strategy between in-car and remote companion updates."], pointsFr:["Architecture Offline-First : Cache Room local ultra-rapide pour adaptation immédiate sans latence réseau.", "Réplication asynchrone sécurisée vers cloud NoSQL (GCP) pour portabilité inter-véhicules.", "Résolution intelligente de conflits entre modifications locales et distantes."], tech:["Kotlin","Room DB","WorkManager","GCP Firestore","Offline-First","MVVM","Git"], github:"https://github.com/fahedbelhiba/driver-id-profile-sync" },
+  { id:"vehicle-wifi-direct-link", badge:"Wi-Fi Direct P2P · Diagnostics", badgeClass:"badge-connected", year:"2024–2026", category:"android ble", titleEn:"In-Vehicle Wi-Fi Direct P2P Link", titleFr:"Liaison Locale Wi-Fi Direct P2P pour Véhicule", summaryEn:"High-speed P2P channel between smartphone and in-vehicle head unit for diagnostics and bulk data transfer.", summaryFr:"Canal de communication local haut débit entre smartphone et système embarqué pour diagnostic et transfert.", pointsEn:["Android WifiP2pManager integration for autonomous P2P group negotiation and peer discovery.", "Bidirectional TCP socket channel with length-prefix framing for onboard vehicle diagnostics.", "Continuous link health monitoring and resilient automated reconnection."], pointsFr:["Gestionnaire WifiP2pManager pour la négociation de groupe P2P autonome.", "Canal de sockets TCP/UDP bidirectionnel avec protocole de tramage pour diagnostics embarqués.", "Surveillance continue de la qualité de liaison et reconnexion automatique."], tech:["Android SDK","WifiP2pManager","TCP Sockets","Kotlin","Coroutines","Git"], github:"https://github.com/fahedbelhiba/vehicle-wifi-direct-link" },
+  { id:"budget-manager-kotlin", badge:"Mobile Android · Kotlin", badgeClass:"badge-android", year:"2022–2024", category:"android", titleEn:"Personal Budget Management App", titleFr:"Application mobile de gestion de budget personnel", summaryEn:"Android personal finance app in Kotlin to track expenses, visualize balance, and manage transaction history.", summaryFr:"Application Android Kotlin pour le suivi précis des dépenses/revenus et la gestion budgétaire.", pointsEn:["Intuitive financial logging with categorized breakdowns (Transport, Housing, Daily utilities).", "Room DB with live StateFlow balance analytics and interactive transaction history.", "MPAndroidChart charts, Hilt DI, dark mode, recurring transaction support."], pointsFr:["Saisie fluide et catégorisation des transactions (Transport, Logement, Services).", "Base de données Room avec StateFlow, calcul de solde en direct et historique.", "Graphiques MPAndroidChart, injection Hilt, mode sombre, transactions récurrentes."], tech:["Kotlin","Room DB","Hilt","StateFlow","MPAndroidChart","Android Studio","Git"], github:"https://github.com/fahedbelhiba/budget-manager-kotlin" },
+  { id:"carpooling-platform-java", badge:"Java · Spring Boot · SQL", badgeClass:"badge-mobility", year:"2022–2024", category:"mobility", titleEn:"Java Carpooling Platform", titleFr:"Plateforme de covoiturage Java", summaryEn:"End-to-end carpooling platform for publishing, searching, and booking shared eco-friendly trips.", summaryFr:"Application complète Java pour publier, rechercher et réserver des trajets partagés.", pointsEn:["Full Spring Boot REST API: user roles, trip scheduling, reservation workflows, ride history.", "Relational DB with transactional SQL (ACID), optimistic locking for concurrent booking.", "JWT authentication, driver ratings, admin dashboard, pagination, Docker Compose."], pointsFr:["API REST Spring Boot complète : rôles utilisateurs, trajets, réservations, historique.", "Base de données relationnelle SQL ACID avec verrouillage optimiste anti-surbooking.", "Authentification JWT, évaluations conducteurs, dashboard admin, Docker Compose."], tech:["Java 17","Spring Boot","JPA/Hibernate","SQL","JWT","Docker","Git"], github:"https://github.com/fahedbelhiba/carpooling-platform-java" },
+  { id:"service-booking-app", badge:"Mobile Android · Kotlin", badgeClass:"badge-android", year:"2024–2026", category:"android", titleEn:"Service Booking & Management App", titleFr:"Application mobile de gestion et réservation de services", summaryEn:"Native Android app in Kotlin to search, browse availability, and book on-demand services in real time.", summaryFr:"Application Android Kotlin pour rechercher et réserver différents services en temps réel.", pointsEn:["Multicriteria service discovery with live calendar availability slots and instant booking.", "FCM push notifications for reminders, offline queue for bookings without network.", "Jetpack Compose UI, Kotlin Coroutines + Flow, Retrofit API client, review & rating system."], pointsFr:["Recherche multicritère et réservation instantanée avec créneaux de disponibilité en direct.", "Notifications push FCM et file d'attente hors ligne pour réservations sans réseau.", "UI Jetpack Compose, Coroutines + Flow, client Retrofit, système d'évaluation."], tech:["Kotlin","Jetpack Compose","Retrofit","FCM","MVVM","Coroutines","Git"], github:"https://github.com/fahedbelhiba/service-booking-app" }
+];
+
+const experiences = [
+  { org:"Association Jeunes Science Tunis — Tunisia", period:"Jan 2023 – Jun 2023", roleEn:"Mobile & Web Development Intern (Final-Year)", roleFr:"Stagiaire Développement Mobile & Web — Fin d'études", descEn:"Mobile app + admin interface development", descFr:"Développement d'application mobile et interface d'administration", pointsEn:["Mobile app for managing activities, members and QR Code attendance tracking.","Admin interface development and SQL data management.","Testing, bug fixing and UX improvements."], pointsFr:["Application mobile de gestion des activités, adhérents et présences par QR Code.","Interface d'administration et gestion des données SQL.","Tests, correction d'anomalies et amélioration de l'ergonomie."], tech:["Ionic","Vue.js","Laravel","PHP","SQL","API REST","Trello"] },
+  { org:"ALLIANCE SYNERGY — Tunis, Tunisia", period:"Jan 2022 – Mar 2022", roleEn:"Mobile Development Intern — Kotlin & BLE", roleFr:"Stagiaire Développement Mobile — Kotlin & BLE", descEn:"Android mobile dev in Kotlin & BLE scanning", descFr:"Développement mobile Android en Kotlin & scan BLE", pointsEn:["Android Kotlin app: BLE scanning, device discovery, runtime permissions, lifecycle management.","Functional testing, bug correction, Git version control."], pointsFr:["Application Android Kotlin : scan BLE, découverte de périphériques, permissions runtime, cycle de vie.","Tests fonctionnels, correction d'anomalies, versionnement Git."], tech:["Kotlin","Android Studio","Android SDK","BLE","Git"] },
+  { org:"Softify Tunisie", period:"Jan 2021 – Mar 2021", roleEn:"Mobile Development Intern — REST API & NoSQL", roleFr:"Stagiaire Développement Mobile — REST API & NoSQL", descEn:"REST API integration & offline NoSQL sync", descFr:"Intégration REST API & synchronisation hors ligne NoSQL", pointsEn:["REST API integration and JSON data processing in Kotlin.","Offline local storage and sync with NoSQL database."], pointsFr:["Intégration REST API et traitement JSON en Kotlin.","Stockage hors ligne et synchronisation NoSQL."], tech:["Kotlin","API REST","JSON","NoSQL","Git"] }
+];
+
+const education = [
+  { school:"INSA Hauts-de-France — Valenciennes, France", period:"Since 2025", degree:"Master IT for Smart & Sustainable Mobility (IT4SSM)", descEn:"Software solutions, IoT, and mobile apps for smart mobility in an international engineering environment.", descFr:"Solutions logicielles, IoT et applications mobiles pour la mobilité intelligente, environnement international." },
+  { school:"ECOLE-IT France", period:"2023 – 2025", degree:"Licence — Information Systems Architecture", descEn:"Software development, connected systems, and information systems architecture.", descFr:"Développement logiciel, systèmes connectés et architecture des systèmes d'information." },
+  { school:"ISET — Tunisia", period:"2020 – 2023", degree:"Licence Informatique — Développement des Systèmes d'Information", descEn:"Core CS, algorithmics, OOP (Java, C/C++), networks, and databases.", descFr:"Informatique, algorithmique, POO (Java, C/C++), réseaux et bases de données." }
+];
+
+const skills = [
+  { icon:"📱", title:"Mobile", tags:["Kotlin","Java","Android Studio","Android SDK","Ionic","MVVM","Coroutines / Flow","Jetpack Compose"] },
+  { icon:"💻", title:"Programming", tags:["Kotlin","Java","C / C++","Python","JavaScript","PHP","Firebase"] },
+  { icon:"📡", title:"IoT & Systems", tags:["BLE (Bluetooth Low Energy)","Wi-Fi Direct","Bluetooth","ESP32","Arduino","Raspberry Pi"] },
+  { icon:"🗄️", title:"API & Data", tags:["REST APIs","JSON","SQL","NoSQL","Offline-First Sync","Firebase"] },
+  { icon:"⚙️", title:"Tools & DevOps", tags:["Git","Docker","Kubernetes","Ansible","Trello","Spring Boot"] },
+  { icon:"🌐", title:"Languages", tags:["French — Fluent","English — Fluent","German — Beginner"] }
+];
+---
+<Layout title="Fahd BELHIBA | Android Developer & Connected Mobility">
+<style>
+:root{--bg:#060810;--bg-surface:rgba(13,19,33,0.9);--border:rgba(255,255,255,0.08);--border-cyan:rgba(56,189,248,0.3);--cyan:#0EA5E9;--cyan-dark:#0284C7;--blue:#2563EB;--violet:#7C3AED;--emerald:#10B981;--text:#F1F5F9;--text-body:#CBD5E1;--text-muted:#94A3B8;--text-dim:#64748B;--font:'Plus Jakarta Sans',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace;--display:'Space Grotesk',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text-body);font-family:var(--font);overflow-x:hidden;background-image:radial-gradient(ellipse at 15% 10%,rgba(14,165,233,.12) 0%,transparent 50%),radial-gradient(ellipse at 85% 80%,rgba(124,58,237,.1) 0%,transparent 50%);background-attachment:fixed;}
+body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.015) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+.container{max-width:1180px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1;}
+header{position:sticky;top:0;z-index:100;background:rgba(6,8,16,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:.9rem 0;}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none;font-weight:800;font-size:1.2rem;color:var(--text);font-family:var(--display);}
+.nav-badge{font-size:.7rem;font-family:var(--mono);color:var(--cyan);background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.3);padding:.2rem .55rem;border-radius:9999px;font-weight:700;}
+.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center;}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:.88rem;font-weight:600;transition:color .2s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-controls{display:flex;align-items:center;gap:.75rem;}
+.btn-cv{background:linear-gradient(135deg,var(--cyan-dark),var(--blue));color:#fff;padding:.45rem 1rem;border-radius:8px;font-weight:700;font-size:.82rem;display:inline-flex;align-items:center;gap:.4rem;text-decoration:none;transition:all .2s;box-shadow:0 4px 15px rgba(2,132,199,.4);}
+.btn-cv:hover{transform:translateY(-1px);box-shadow:0 8px 25px rgba(2,132,199,.5);}
+.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text-muted);font-family:var(--mono);font-size:.75rem;font-weight:700;padding:.38rem .7rem;border-radius:7px;cursor:pointer;transition:all .2s;}
+.lang-btn:hover{border-color:var(--cyan);color:var(--cyan);}
+body.lang-en .fr{display:none!important;}
+body.lang-fr .en{display:none!important;}
+.hero{padding:5rem 0 4rem;display:grid;grid-template-columns:1.2fr 0.8fr;gap:3.5rem;align-items:center;}
+.badge-open{display:inline-flex;align-items:center;gap:.55rem;padding:.38rem 1rem;border-radius:9999px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);font-size:.73rem;font-weight:700;letter-spacing:.06em;color:#34D399;margin-bottom:1.4rem;font-family:var(--mono);text-transform:uppercase;}
+.pulse{width:7px;height:7px;border-radius:50%;background:#34D399;box-shadow:0 0 10px #34D399;animation:pulse 2s infinite;flex-shrink:0;}
+@keyframes pulse{0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(52,211,153,.7);}70%{transform:scale(1);box-shadow:0 0 0 7px rgba(52,211,153,0);}100%{transform:scale(.95);box-shadow:0 0 0 0 rgba(52,211,153,0);}}
+h1.hero-title{font-size:3rem;font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--text);margin-bottom:1rem;font-family:var(--display);}
+.grad{background:linear-gradient(135deg,#38BDF8 0%,#818CF8 50%,#A78BFA 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1.05rem;font-weight:600;color:var(--text-body);margin-bottom:1rem;}
+.hero-sub strong{color:var(--cyan);}
+.hero-bio{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:1.8rem;}
+.meta-pills{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:2rem;}
+.meta-pill{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.05);border:1px solid var(--border);padding:.35rem .8rem;border-radius:8px;font-size:.8rem;color:var(--text-body);font-family:var(--mono);}
+.meta-pill a{color:inherit;text-decoration:none;font-weight:600;}
+.meta-pill a:hover{color:var(--cyan);}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:700;padding:.85rem 1.5rem;border-radius:10px;text-decoration:none;transition:all .25s;cursor:pointer;border:none;}
+.btn-primary{background:linear-gradient(135deg,var(--cyan-dark),var(--blue));color:#fff;box-shadow:0 4px 20px rgba(2,132,199,.4);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(2,132,199,.6);}
+.btn-secondary{background:rgba(255,255,255,.06);color:var(--text);border:1px solid var(--border);}
+.btn-secondary:hover{background:rgba(255,255,255,.1);border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px);}
+.hud-card{background:linear-gradient(145deg,rgba(13,19,33,.95),rgba(6,8,22,.98));border:1px solid var(--border-cyan);border-radius:20px;padding:1.75rem;position:relative;overflow:hidden;box-shadow:0 0 40px rgba(14,165,233,.1);}
+.hud-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),#818CF8,var(--cyan));}
+.hud-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:.9rem;border-bottom:1px solid var(--border);margin-bottom:1.2rem;}
+.hud-title{font-family:var(--mono);font-size:.73rem;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:.5rem;}
+.status-badge{display:flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.68rem;font-weight:700;background:rgba(16,185,129,.15);color:#34D399;padding:.2rem .6rem;border-radius:6px;border:1px solid rgba(16,185,129,.3);}
+.gauges{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:1.1rem;}
+.gauge{background:rgba(6,8,16,.6);border:1px solid var(--border);border-radius:12px;padding:1rem .8rem;text-align:center;}
+.gauge svg{transform:rotate(-90deg);}
+.g-bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:7;}
+.g-prog{fill:none;stroke:url(#gaugeGrad);stroke-width:7;stroke-linecap:round;stroke-dasharray:207;transition:stroke-dashoffset .8s ease;}
+.gauge-center{position:relative;width:78px;height:78px;margin:0 auto .4rem;}
+.gauge-center svg{position:absolute;inset:0;}
+.gauge-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--mono);}
+.gauge-val{font-size:1.15rem;font-weight:800;color:var(--text);}
+.gauge-sub{font-size:.6rem;color:var(--text-muted);text-transform:uppercase;font-weight:600;}
+.gauge-note{font-size:.7rem;font-family:var(--mono);font-weight:700;margin-top:.2rem;}
+.controls{background:rgba(6,8,16,.5);border:1px solid var(--border);border-radius:10px;padding:.9rem;margin-bottom:1rem;display:flex;flex-direction:column;gap:.75rem;}
+.ctrl-row{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;font-weight:600;color:var(--text-body);}
+.ctrl-btn{background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.35);color:var(--cyan);padding:.28rem .7rem;border-radius:6px;font-family:var(--mono);font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s;}
+.ctrl-btn:hover{background:var(--cyan);color:#000;}
+.terminal{background:#080c14;border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:.8rem;font-family:var(--mono);font-size:.68rem;color:var(--text-dim);height:86px;overflow-y:auto;line-height:1.5;}
+.t-rx{color:#38BDF8;}.t-tx{color:#34D399;}.t-alert{color:#FBBF24;font-weight:700;}
+section{padding:5rem 0;border-top:1px solid var(--border);}
+.sec-pre{font-family:var(--mono);font-size:.73rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;display:block;font-weight:700;}
+.sec-title{font-size:2.3rem;font-weight:800;letter-spacing:-.025em;color:var(--text);font-family:var(--display);}
+.sec-desc{font-size:.95rem;color:var(--text-muted);max-width:700px;margin-top:.6rem;line-height:1.75;}
+.sec-header{margin-bottom:2.75rem;}
+.filters{display:flex;flex-wrap:wrap;gap:.65rem;margin-bottom:2.5rem;}
+.filter-btn{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text-muted);padding:.48rem 1.1rem;border-radius:9999px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:var(--font);}
+.filter-btn:hover,.filter-btn.active{background:linear-gradient(135deg,var(--cyan-dark),var(--blue));border-color:transparent;color:#fff;box-shadow:0 4px 18px rgba(2,132,199,.35);}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.75rem;}
+.project-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:18px;padding:1.85rem;display:flex;flex-direction:column;transition:all .3s cubic-bezier(.16,1,.3,1);}
+.project-card:hover{transform:translateY(-5px);border-color:var(--border-cyan);box-shadow:0 0 30px rgba(14,165,233,.12);}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+.proj-badge{font-size:.68rem;font-family:var(--mono);padding:.22rem .65rem;border-radius:5px;font-weight:700;}
+.badge-android{background:rgba(14,165,233,.15);color:#38BDF8;border:1px solid rgba(14,165,233,.3);}
+.badge-mobility{background:rgba(124,58,237,.15);color:#A78BFA;border:1px solid rgba(124,58,237,.3);}
+.badge-connected{background:rgba(16,185,129,.15);color:#34D399;border:1px solid rgba(16,185,129,.3);}
+.proj-year{font-family:var(--mono);font-size:.73rem;color:var(--text-dim);font-weight:700;}
+.proj-title{font-size:1.15rem;font-weight:800;color:var(--text);margin-bottom:.55rem;}
+.proj-summary{font-size:.86rem;color:var(--text-muted);line-height:1.65;margin-bottom:1.1rem;flex-grow:1;}
+.proj-points{list-style:none;margin-bottom:1.2rem;display:flex;flex-direction:column;gap:.42rem;}
+.proj-points li{font-size:.8rem;color:var(--text-body);display:flex;align-items:flex-start;gap:.45rem;line-height:1.55;}
+.proj-points li::before{content:"▹";color:var(--cyan);flex-shrink:0;}
+.proj-footer{display:flex;justify-content:space-between;align-items:flex-start;padding-top:1rem;border-top:1px solid var(--border);gap:.5rem;}
+.tech-pills{display:flex;flex-wrap:wrap;gap:.38rem;flex:1;}
+.pill{font-size:.65rem;font-family:var(--mono);background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text-muted);padding:.18rem .5rem;border-radius:4px;font-weight:600;}
+.gh-link{display:inline-flex;align-items:center;gap:.35rem;font-size:.73rem;font-weight:700;color:var(--text-muted);text-decoration:none;font-family:var(--mono);padding:.28rem .6rem;border:1px solid var(--border);border-radius:6px;transition:all .2s;white-space:nowrap;}
+.gh-link:hover{color:var(--cyan);border-color:var(--border-cyan);}
+.timeline{position:relative;border-left:2px solid rgba(14,165,233,.2);margin-left:1rem;padding-left:2.25rem;display:flex;flex-direction:column;gap:2rem;}
+.tl-node{position:relative;}
+.tl-dot{position:absolute;left:-2.85rem;top:.35rem;width:15px;height:15px;border-radius:50%;background:var(--bg);border:3px solid var(--cyan);box-shadow:0 0 12px rgba(14,165,233,.5);}
+.tl-dot.purple{border-color:var(--violet);box-shadow:0 0 12px rgba(124,58,237,.5);}
+.tl-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:14px;padding:1.7rem;transition:all .25s;}
+.tl-card:hover{border-color:var(--border-cyan);}
+.tl-header{display:flex;justify-content:space-between;flex-wrap:wrap;font-size:.75rem;font-family:var(--mono);color:var(--cyan);font-weight:700;margin-bottom:.3rem;}
+.tl-role{font-size:1.12rem;font-weight:800;color:var(--text);margin-bottom:.2rem;}
+.tl-org{font-size:.88rem;color:var(--text-muted);margin-bottom:.85rem;font-weight:600;}
+.tl-points{list-style:none;display:flex;flex-direction:column;gap:.45rem;font-size:.84rem;color:var(--text-body);}
+.tl-points li{display:flex;align-items:flex-start;gap:.5rem;line-height:1.6;}
+.tl-points li::before{content:"•";color:var(--cyan);font-weight:bold;}
+.tl-pills{display:flex;flex-wrap:wrap;gap:.38rem;margin-top:.9rem;}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.5rem;}
+.skill-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:all .25s;}
+.skill-card:hover{border-color:var(--border-cyan);}
+.skill-title{font-size:.95rem;font-weight:800;margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:.55rem;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.45rem;}
+.skill-tag{background:rgba(255,255,255,.05);border:1px solid var(--border);padding:.28rem .65rem;border-radius:6px;font-size:.78rem;font-family:var(--mono);color:var(--text-muted);font-weight:600;transition:all .2s;}
+.skill-tag:hover{background:rgba(14,165,233,.1);border-color:rgba(14,165,233,.3);color:var(--cyan);}
+.cv-wrapper{background:var(--bg-surface);border:1px solid var(--border-cyan);border-radius:20px;padding:2.5rem;box-shadow:0 0 50px rgba(14,165,233,.08);}
+.cv-actions{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+.cv-card{background:#0A0E18;color:#F1F5F9;border-radius:12px;padding:2rem;border:1px solid var(--border);}
+footer{padding:3rem 0;border-top:1px solid var(--border);text-align:center;color:var(--text-dim);font-size:.85rem;}
+footer a{color:var(--cyan);text-decoration:none;}
+.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap;}
+.footer-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--text-muted);text-decoration:none;font-size:.85rem;font-weight:600;transition:color .2s;}
+.footer-link:hover{color:var(--cyan);}
+@media(max-width:960px){.hero{grid-template-columns:1fr;gap:2.5rem;}h1.hero-title{font-size:2.3rem;}.nav-links{display:none;}.sec-title{font-size:1.8rem;}}
+@media(max-width:600px){.projects-grid{grid-template-columns:1fr;}.cv-actions{flex-direction:column;align-items:flex-start;}}
+</style>
+<header>
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">Fahd BELHIBA <span class="nav-badge">IT4SSM</span></a>
+    <ul class="nav-links">
+      <li><a href="#projects"><span class="en">Projects</span><span class="fr">Projets</span></a></li>
+      <li><a href="#experience"><span class="en">Experience</span><span class="fr">Expériences</span></a></li>
+      <li><a href="#education"><span class="en">Education</span><span class="fr">Formations</span></a></li>
+      <li><a href="#skills"><span class="en">Skills</span><span class="fr">Compétences</span></a></li>
+      <li><a href="#cv">CV</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="lang-btn" id="langBtn">🌐 FR / EN</button>
+      <a href="/CV_Fahd_BELHIBA_Mobile.pdf" download class="btn-cv">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        CV PDF
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <div class="badge-open"><span class="pulse"></span><span class="en">FINAL-YEAR INTERNSHIP · FROM MARCH 2027</span><span class="fr">STAGE FIN D'ÉTUDES · DÈS MARS 2027</span></div>
+      <h1 class="hero-title">Fahd BELHIBA<br/><span class="grad en">Android Developer<br/>& Connected Mobility</span><span class="grad fr">Développeur Mobile<br/>& Mobilité Connectée</span></h1>
+      <p class="hero-sub"><span class="en">Final-Year Master in <strong>IT for Smart & Sustainable Mobility (IT4SSM)</strong> — INSA Hauts-de-France</span><span class="fr">Étudiant Master <strong>IT4SSM</strong> — INSA Hauts-de-France</span></p>
+      <p class="hero-bio en">Passionate about native Android, connected vehicle systems, BLE/Wi-Fi Direct protocols, and sustainable mobility. Seeking a 6-month final-year internship from March 2027.</p>
+      <p class="hero-bio fr">Passionné par Android natif, les systèmes embarqués connectés, BLE/Wi-Fi Direct et la mobilité durable. Je recherche un stage de fin d'études de 6 mois dès mars 2027.</p>
+      <div class="meta-pills">
+        <div class="meta-pill">📍 Valenciennes (59300), France</div>
+        <div class="meta-pill">✉️ <a href="mailto:belhibafahd@outlook.fr">belhibafahd@outlook.fr</a></div>
+        <div class="meta-pill">📞 +33 6 05 67 02 16</div>
+        <div class="meta-pill">💼 <a href="https://github.com/fahedbelhiba" target="_blank">fahedbelhiba</a></div>
+      </div>
+      <div class="hero-btns">
+        <a href="/CV_Fahd_BELHIBA_Mobile.pdf" download class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span class="en">Download CV (PDF)</span><span class="fr">Télécharger CV (PDF)</span>
+        </a>
+        <a href="#projects" class="btn btn-secondary"><span class="en">View 6 Projects →</span><span class="fr">Voir les 6 Projets →</span></a>
+      </div>
+    </div>
+
+    <div class="hud-card">
+      <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0EA5E9"/><stop offset="100%" stop-color="#818CF8"/></linearGradient></defs></svg>
+      <div class="hud-top">
+        <div class="hud-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> VEHICLE BLE HUD</div>
+        <div class="status-badge"><span class="pulse" style="width:6px;height:6px;"></span> CONNECTED</div>
+      </div>
+      <div class="gauges">
+        <div class="gauge">
+          <div class="gauge-center">
+            <svg width="78" height="78" viewBox="0 0 78 78"><circle class="g-bg" cx="39" cy="39" r="33"/><circle class="g-prog" id="socCircle" cx="39" cy="39" r="33" style="stroke-dashoffset:36;"/></svg>
+            <div class="gauge-label"><span class="gauge-val" id="socVal">84%</span><span class="gauge-sub">Battery</span></div>
+          </div>
+          <div class="gauge-note" style="color:#34D399;">Range: <span id="rangeVal">345</span> km</div>
+        </div>
+        <div class="gauge">
+          <div class="gauge-center">
+            <svg width="78" height="78" viewBox="0 0 78 78"><circle class="g-bg" cx="39" cy="39" r="33"/><circle class="g-prog" cx="39" cy="39" r="33" style="stroke-dashoffset:72;"/></svg>
+            <div class="gauge-label"><span class="gauge-val" id="tempVal">21°</span><span class="gauge-sub">HVAC</span></div>
+          </div>
+          <div class="gauge-note" style="color:var(--cyan);">Target: <span id="targetVal">21.0</span>°C</div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="ctrl-row"><span>Door Lock:</span><button class="ctrl-btn" id="doorBtn">LOCKED 🔒</button></div>
+        <div class="ctrl-row"><span>Climate:</span><div style="display:flex;gap:.35rem;"><button class="ctrl-btn" id="coolBtn">-0.5°</button><button class="ctrl-btn" id="warmBtn">+0.5°</button></div></div>
+        <div><div class="ctrl-row" style="margin-bottom:.3rem;"><span>RSSI Proximity:</span><span id="rssiVal" style="color:var(--cyan);font-family:var(--mono);font-size:.72rem;font-weight:700;">-58 dBm</span></div><input type="range" id="rssiSlider" min="-90" max="-40" value="-58" style="width:100%;accent-color:var(--cyan);"></div>
+      </div>
+      <div class="terminal" id="terminal">
+        <div class="t-rx">[GATT] Subscription active: 0000FE21 (Vehicle Telemetry)</div>
+        <div class="t-tx">[BLE] Driver: FAHD_BELHIBA (IT4SSM)</div>
+        <div class="t-alert">[PROXIMITY] Welcome Zone active (-58 dBm)</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-header">
+      <span class="sec-pre en">Engineering Projects</span><span class="sec-pre fr">Réalisations & Projets</span>
+      <h2 class="sec-title"><span class="en">Mobile, <span class="grad">Mobility & Systems</span></span><span class="fr">Projets <span class="grad">Mobile, Mobilité & Systèmes</span></span></h2>
+      <p class="sec-desc en">6 core projects demonstrating proficiency in native Android (Kotlin), Java systems, connected vehicle protocols (BLE / Wi-Fi Direct) and cloud integration.</p>
+      <p class="sec-desc fr">Les 6 projets majeurs démontrant mon savoir-faire en développement Android (Kotlin), Java, et protocoles embarqués (BLE / Wi-Fi Direct).</p>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All (6)</button>
+      <button class="filter-btn" data-filter="android">Android Kotlin</button>
+      <button class="filter-btn" data-filter="mobility">Mobility & Java</button>
+      <button class="filter-btn" data-filter="ble">BLE & Connectivity</button>
+    </div>
+    <div class="projects-grid" id="projectsGrid">
+      {projects.map(p => (
+        <div class="project-card" data-category={p.category}>
+          <div class="card-top"><span class={`proj-badge ${p.badgeClass}`}>{p.badge}</span><span class="proj-year">{p.year}</span></div>
+          <h3 class="proj-title en">{p.titleEn}</h3><h3 class="proj-title fr">{p.titleFr}</h3>
+          <p class="proj-summary en">{p.summaryEn}</p><p class="proj-summary fr">{p.summaryFr}</p>
+          <ul class="proj-points en">{p.pointsEn.map(pt => <li>{pt}</li>)}</ul>
+          <ul class="proj-points fr">{p.pointsFr.map(pt => <li>{pt}</li>)}</ul>
+          <div class="proj-footer">
+            <div class="tech-pills">{p.tech.map(t => <span class="pill">{t}</span>)}</div>
+            <a href={p.github} target="_blank" class="gh-link"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-header">
+      <span class="sec-pre en">Career Trajectory</span><span class="sec-pre fr">Parcours Professionnel</span>
+      <h2 class="sec-title"><span class="en">Professional <span class="grad">Experience</span></span><span class="fr">Expériences <span class="grad">Professionnelles</span></span></h2>
+    </div>
+    <div class="timeline">
+      {experiences.map(e => (
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header"><span>{e.org}</span><span>{e.period}</span></div>
+            <div class="tl-role en">{e.roleEn}</div><div class="tl-role fr">{e.roleFr}</div>
+            <div class="tl-org en">{e.descEn}</div><div class="tl-org fr">{e.descFr}</div>
+            <ul class="tl-points en">{e.pointsEn.map(pt => <li>{pt}</li>)}</ul>
+            <ul class="tl-points fr">{e.pointsFr.map(pt => <li>{pt}</li>)}</ul>
+            <div class="tl-pills">{e.tech.map(t => <span class="pill">{t}</span>)}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="sec-header">
+      <span class="sec-pre en">Academic Education</span><span class="sec-pre fr">Formation d'Ingénierie</span>
+      <h2 class="sec-title"><span class="en">Degrees & <span class="grad">Education</span></span><span class="fr">Diplômes & <span class="grad">Formations</span></span></h2>
+    </div>
+    <div class="timeline">
+      {education.map(e => (
+        <div class="tl-node">
+          <div class="tl-dot purple"></div>
+          <div class="tl-card">
+            <div class="tl-header"><span>{e.school}</span><span>{e.period}</span></div>
+            <div class="tl-role">{e.degree}</div>
+            <div class="tl-org en">{e.descEn}</div><div class="tl-org fr">{e.descFr}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-header">
+      <span class="sec-pre en">Skills & Technologies</span><span class="sec-pre fr">Compétences & Outils</span>
+      <h2 class="sec-title"><span class="en">Technical <span class="grad">Competencies</span></span><span class="fr">Matrice des <span class="grad">Compétences</span></span></h2>
+    </div>
+    <div class="skills-grid">
+      {skills.map(s => (
+        <div class="skill-card">
+          <div class="skill-title">{s.icon} {s.title}</div>
+          <div class="skill-tags">{s.tags.map(t => <span class="skill-tag">{t}</span>)}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="cv">
+    <div class="cv-wrapper">
+      <div class="cv-actions">
+        <div>
+          <span class="sec-pre">Official CV Document</span>
+          <h2 class="sec-title" style="font-size:1.6rem;">Curriculum Vitae — Fahd BELHIBA</h2>
+          <p style="font-size:.85rem;color:var(--text-muted);margin-top:.3rem;">Master IT4SSM · Android & Connected Vehicle Development</p>
+        </div>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+          <a href="/CV_Fahd_BELHIBA_Mobile.pdf" download class="btn btn-primary" style="font-size:.85rem;padding:.7rem 1.2rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PDF
+          </a>
+          <a href="mailto:belhibafahd@outlook.fr" class="btn btn-secondary" style="font-size:.85rem;padding:.7rem 1.2rem;">✉️ Contact</a>
+        </div>
+      </div>
+      <div class="cv-card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--cyan);padding-bottom:1.2rem;margin-bottom:1.2rem;flex-wrap:wrap;gap:1rem;">
+          <div>
+            <div style="font-size:1.7rem;font-weight:800;color:#F1F5F9;letter-spacing:-.02em;">Fahd BELHIBA</div>
+            <div style="font-size:.9rem;font-weight:700;color:var(--cyan);margin-top:3px;">IT for Smart & Sustainable Mobility — INSA Hauts-de-France</div>
+            <div style="font-size:.78rem;color:#34D399;font-weight:700;margin-top:3px;">Seeking 6-month final internship from March 2027</div>
+            <div style="font-size:.75rem;color:var(--text-muted);margin-top:.4rem;font-family:var(--mono);">📍 Valenciennes · belhibafahd@outlook.fr · +33 6 05 67 02 16</div>
+          </div>
+          <a href="https://github.com/fahedbelhiba" target="_blank" style="display:flex;align-items:center;gap:.45rem;color:var(--cyan);text-decoration:none;font-family:var(--mono);font-size:.75rem;font-weight:700;padding:.45rem .9rem;border:1px solid var(--border-cyan);border-radius:8px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            github.com/fahedbelhiba
+          </a>
+        </div>
+        <div style="font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);border-bottom:1px solid rgba(14,165,233,.3);padding-bottom:.35rem;margin:1.2rem 0 .65rem;font-family:var(--mono);">EXPERIENCE</div>
+        <div style="margin-bottom:.8rem;"><div style="display:flex;justify-content:space-between;font-size:.75rem;font-weight:700;color:var(--text-muted);"><span>Association Jeunes Science Tunis — Tunisia</span><span>Jan 2023 – Jun 2023</span></div><div style="font-size:.88rem;font-weight:800;color:var(--text);margin:.12rem 0 .18rem;">Mobile & Web Development Intern (Final-Year)</div><div style="font-size:.74rem;color:var(--cyan);font-weight:600;margin-bottom:.3rem;">Ionic · Vue.js · Laravel · PHP · SQL · REST API</div><ul style="list-style:none;font-size:.74rem;color:var(--text-muted);"><li style="display:flex;gap:.35rem;line-height:1.5;"><span style="color:var(--cyan);">–</span>Mobile app for activity, membership, and QR Code attendance management + admin interface</li></ul></div>
+        <div style="margin-bottom:.8rem;"><div style="display:flex;justify-content:space-between;font-size:.75rem;font-weight:700;color:var(--text-muted);"><span>ALLIANCE SYNERGY — Tunis, Tunisia</span><span>Jan 2022 – Mar 2022</span></div><div style="font-size:.88rem;font-weight:800;color:var(--text);margin:.12rem 0 .18rem;">Mobile Development Intern — Kotlin & BLE</div><div style="font-size:.74rem;color:var(--cyan);font-weight:600;margin-bottom:.3rem;">Kotlin · Android Studio · BLE · Git</div><ul style="list-style:none;font-size:.74rem;color:var(--text-muted);"><li style="display:flex;gap:.35rem;line-height:1.5;"><span style="color:var(--cyan);">–</span>Android Kotlin app: BLE scanning, device discovery, runtime permissions, Activity lifecycle management</li></ul></div>
+        <div style="margin-bottom:.8rem;"><div style="display:flex;justify-content:space-between;font-size:.75rem;font-weight:700;color:var(--text-muted);"><span>Softify Tunisie</span><span>Jan 2021 – Mar 2021</span></div><div style="font-size:.88rem;font-weight:800;color:var(--text);margin:.12rem 0 .18rem;">Mobile Development Intern — REST API & NoSQL</div><div style="font-size:.74rem;color:var(--cyan);font-weight:600;margin-bottom:.3rem;">Kotlin · API REST · JSON · NoSQL · Git</div><ul style="list-style:none;font-size:.74rem;color:var(--text-muted);"><li style="display:flex;gap:.35rem;line-height:1.5;"><span style="color:var(--cyan);">–</span>REST API integration, offline NoSQL sync, technical documentation, Git versioning</li></ul></div>
+        <div style="font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);border-bottom:1px solid rgba(14,165,233,.3);padding-bottom:.35rem;margin:1.2rem 0 .65rem;font-family:var(--mono);">EDUCATION</div>
+        <div style="margin-bottom:.5rem;"><div style="display:flex;justify-content:space-between;font-size:.75rem;font-weight:700;color:var(--text-muted);"><span>INSA Hauts-de-France — Valenciennes, France</span><span>2025 – present</span></div><div style="font-size:.88rem;font-weight:800;color:var(--text);">Master IT for Smart & Sustainable Mobility (IT4SSM)</div></div>
+        <div style="margin-bottom:.5rem;"><div style="display:flex;justify-content:space-between;font-size:.75rem;font-weight:700;color:var(--text-muted);"><span>ECOLE-IT France</span><span>2023 – 2025</span></div><div style="font-size:.88rem;font-weight:800;color:var(--text);">Licence — Information Systems Architecture</div></div>
+        <div style="margin-bottom:.8rem;"><div style="display:flex;justify-content:space-between;font-size:.75rem;font-weight:700;color:var(--text-muted);"><span>ISET — Tunisia</span><span>2020 – 2023</span></div><div style="font-size:.88rem;font-weight:800;color:var(--text);">Licence Informatique — Développement des Systèmes d'Information</div></div>
+        <div style="font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);border-bottom:1px solid rgba(14,165,233,.3);padding-bottom:.35rem;margin:1.2rem 0 .65rem;font-family:var(--mono);">SKILLS</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;font-size:.75rem;color:var(--text-muted);">
+          <div><strong style="color:var(--text);">Mobile:</strong> Kotlin, Java, Android SDK, MVVM, Coroutines, Jetpack Compose</div>
+          <div><strong style="color:var(--text);">Connectivity:</strong> BLE, GATT, Wi-Fi Direct, WifiP2pManager, TCP Sockets</div>
+          <div><strong style="color:var(--text);">Backend:</strong> Spring Boot, REST API, SQL, NoSQL, Firebase, GCP</div>
+          <div><strong style="color:var(--text);">Tools:</strong> Git, Docker, Android Studio, Hilt, Room DB, Kubernetes</div>
+        </div>
+        <div style="font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);border-bottom:1px solid rgba(14,165,233,.3);padding-bottom:.35rem;margin:1.2rem 0 .65rem;font-family:var(--mono);">LANGUAGES & ACTIVITIES</div>
+        <div style="font-size:.75rem;color:var(--text-muted);">French (Fluent) · English (Fluent) · German (Beginner) | Hackathons: GIZ · Sustainable Development · Robotics</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="https://github.com/fahedbelhiba" target="_blank" class="footer-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+      <a href="mailto:belhibafahd@outlook.fr" class="footer-link">✉️ belhibafahd@outlook.fr</a>
+      <a href="/CV_Fahd_BELHIBA_Mobile.pdf" download class="footer-link">📄 Download CV</a>
+    </div>
+    <p>© 2026 Fahd BELHIBA · Built with <a href="https://astro.build" target="_blank">Astro</a> · Deployed on <a href="https://vercel.com" target="_blank">Vercel</a></p>
+  </div>
+</footer>
+
+<script>
+const body = document.body;
+const langBtn = document.getElementById('langBtn') as HTMLButtonElement;
+body.classList.add('lang-en');
+langBtn?.addEventListener('click', () => {
+  if (body.classList.contains('lang-en')) { body.classList.replace('lang-en','lang-fr'); langBtn.textContent='🌐 EN / FR'; }
+  else { body.classList.replace('lang-fr','lang-en'); langBtn.textContent='🌐 FR / EN'; }
+});
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = (btn as HTMLElement).dataset.filter!;
+    document.querySelectorAll('.project-card').forEach(c => {
+      const el = c as HTMLElement;
+      el.style.display = (f==='all' || (el.dataset.category||'').includes(f)) ? '' : 'none';
+    });
+  });
+});
+const doorBtn = document.getElementById('doorBtn') as HTMLButtonElement;
+let locked = true;
+doorBtn?.addEventListener('click',()=>{ locked=!locked; doorBtn.textContent=locked?'LOCKED 🔒':'UNLOCKED 🔓'; addLog(locked?'[BLE] CMD: LOCK_DOORS → ACK':'[BLE] CMD: UNLOCK_DOORS → ACK',locked?'t-tx':'t-alert'); });
+let temp=21.0;
+document.getElementById('coolBtn')?.addEventListener('click',()=>{ temp=Math.max(16,temp-0.5); updateTemp(); });
+document.getElementById('warmBtn')?.addEventListener('click',()=>{ temp=Math.min(30,temp+0.5); updateTemp(); });
+function updateTemp(){ const tv=document.getElementById('targetVal'); const v=document.getElementById('tempVal'); if(tv)tv.textContent=temp.toFixed(1); if(v)v.textContent=temp.toFixed(0)+'°'; addLog(`[BLE] SET_HVAC=${temp.toFixed(1)}°C`,'t-tx'); }
+document.getElementById('rssiSlider')?.addEventListener('input',e=>{ const val=(e.target as HTMLInputElement).value; const el=document.getElementById('rssiVal'); if(el)el.textContent=val+' dBm'; addLog(`[RSSI] ${val} dBm — ${parseInt(val)>-65?'Welcome Zone ACTIVE':'Out of range'}`,'t-rx'); });
+function addLog(msg:string,cls:string){ const t=document.getElementById('terminal'); if(!t)return; const d=document.createElement('div'); d.className=cls; d.textContent=msg; t.appendChild(d); t.scrollTop=t.scrollHeight; }
+setInterval(()=>{ const m=[{t:`[TELEMETRY] SoC: ${Math.floor(80+Math.random()*10)}% · Range: ${Math.floor(330+Math.random()*30)} km`,c:'t-rx'},{t:`[GATT] Cabin: ${(20+Math.random()*2).toFixed(1)}°C`,c:'t-rx'},{t:`[RSSI] Signal: ${Math.floor(-62+Math.random()*8)} dBm`,c:'t-tx'}]; const r=m[Math.floor(Math.random()*m.length)]; addLog(r.t,r.c); },4000);
+</script>
+</Layout>
