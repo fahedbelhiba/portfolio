@@ -48,15 +48,15 @@ const awards = [
 ];
 
 const experiences = [
-  { org:"Association Jeunes Science Tunis — Tunisia", period:"Jan 2023 – Jun 2023", roleEn:"Mobile & Web Development Intern (Final-Year)", roleFr:"Stagiaire Développement Mobile & Web — Fin d'études", descEn:"Mobile app + admin interface development", descFr:"Développement d'application mobile et interface d'administration", pointsEn:["Mobile app for managing activities, members and QR Code attendance tracking.","Admin interface development and SQL data management.","Testing, bug fixing and UX improvements."], pointsFr:["Application mobile de gestion des activités, adhérents et présences par QR Code.","Interface d'administration et gestion des données SQL.","Tests, correction d'anomalies et amélioration de l'ergonomie."], tech:["Ionic","Vue.js","Laravel","PHP","SQL","API REST","Trello"] },
-  { org:"ALLIANCE SYNERGY — Tunis, Tunisia", period:"Jan 2022 – Mar 2022", roleEn:"Mobile Development Intern — Kotlin & BLE", roleFr:"Stagiaire Développement Mobile — Kotlin & BLE", descEn:"Android mobile dev in Kotlin & BLE scanning", descFr:"Développement mobile Android en Kotlin & scan BLE", pointsEn:["Android Kotlin app: BLE scanning, device discovery, runtime permissions, lifecycle management.","Functional testing, bug correction, Git version control."], pointsFr:["Application Android Kotlin : scan BLE, découverte de périphériques, permissions runtime, cycle de vie.","Tests fonctionnels, correction d'anomalies, versionnement Git."], tech:["Kotlin","Android Studio","Android SDK","BLE","Git"] },
-  { org:"Softify Tunisie", period:"Jan 2021 – Mar 2021", roleEn:"Mobile Development Intern — REST API & NoSQL", roleFr:"Stagiaire Développement Mobile — REST API & NoSQL", descEn:"REST API integration & offline NoSQL sync", descFr:"Intégration REST API & synchronisation hors ligne NoSQL", pointsEn:["REST API integration and JSON data processing in Kotlin.","Offline local storage and sync with NoSQL database."], pointsFr:["Intégration REST API et traitement JSON en Kotlin.","Stockage hors ligne et synchronisation NoSQL."], tech:["Kotlin","API REST","JSON","NoSQL","Git"] }
+  { org:"Association jeunes Science — Tunisie", period:"01/2023 – 06/2023", roleEn:"Mobile & Web Development Intern (Final-Year)", roleFr:"Stagiaire en stage de Fin d'études en développement Mobile et web", descEn:"Native Android app & web admin interface for activities and QR Code attendance", descFr:"Application mobile Android native & interface d'administration web par QR Code", pointsEn:["Development of a native Android mobile application (Kotlin) for managing activities, members, and QR Code attendance tracking using camera and sensors.","Design of a web administration interface and SQL data management."], pointsFr:["Développement d'une application mobile Android native (Kotlin) de gestion des activités, des adhérents et des présences par QR Code, exploitant la caméra et les capteurs du terminal.","Conception d'une interface d'administration web et gestion des données SQL."], tech:["Kotlin","Android Studio","Spring Boot","React","SQL"] },
+  { org:"ALLIANCE SYNERGY — Tunisie", period:"01/2022 – 03/2022", roleEn:"Mobile Development Intern", roleFr:"Stagiaire en Développement Mobile", descEn:"Native Android app in Kotlin for IoT device communication & BLE scan", descFr:"Application mobile Android native en Kotlin pour communication IoT & scan BLE", pointsEn:["Development of a native Android mobile application (Kotlin, Android Studio) dedicated to IoT peripheral communication.","Implementation of BLE device scanning and detection.","Management of Android Bluetooth and location runtime permissions."], pointsFr:["Développement d'une application mobile Android native (Kotlin, Android Studio) dédiée à la communication avec des périphériques IoT.","Implémentation du scan et de la détection de périphériques via BLE.","Gestion des permissions Android liées au Bluetooth et à la localisation."], tech:["Kotlin","Android Studio","SQL","API REST","BLE"] },
+  { org:"Softify — Tunisie", period:"01/2021 – 03/2021", roleEn:"Python / Data Development Intern", roleFr:"Stagiaire en développement Python / Data", descEn:"REST API integration & Python data analysis scripts", descFr:"Intégration d'API REST & scripts Python d'analyse de données", pointsEn:["REST API integration and JSON data processing.","Python scripts for data analysis and validation."], pointsFr:["Intégration d'API REST et traitement de données JSON.","Scripts Python d'analyse et de validation des données."], tech:["Kotlin","Python","JSON","API REST","NoSQL"] }
 ];
 
 const education = [
-  { school:"INSA Hauts-de-France — Valenciennes, France", period:"Since 2025", degree:"Master IT for Smart & Sustainable Mobility (IT4SSM)", descEn:"Software solutions, IoT, and mobile apps for smart mobility in an international engineering environment.", descFr:"Solutions logicielles, IoT et applications mobiles pour la mobilité intelligente, environnement international." },
-  { school:"ECOLE-IT France", period:"2023 – 2025", degree:"Licence — Information Systems Architecture", descEn:"Software development, connected systems, and information systems architecture.", descFr:"Développement logiciel, systèmes connectés et architecture des systèmes d'information." },
-  { school:"ISET — Tunisia", period:"2020 – 2023", degree:"Licence Informatique — Développement des Systèmes d'Information", descEn:"Core CS, algorithmics, OOP (Java, C/C++), networks, and databases.", descFr:"Informatique, algorithmique, POO (Java, C/C++), réseaux et bases de données." }
+  { school:"INSA HAUT-DE-FRANCE — Valenciennes, France", period:"09/2025 – Present", degree:"Master in Information Technology for Smart and Sustainable Mobility (IT4SSM)", descEn:"Data engineering, multi-agent simulation, edge computing, machine learning, IoT, network security, and traffic modeling for sustainable mobility.", descFr:"Data engineering, simulation multi-agents, edge computing, machine learning, IoT, sécurité réseau et modélisation du trafic pour la mobilité durable." },
+  { school:"Ecole IT — Valenciennes, France", period:"09/2023 – 06/2025", degree:"Licence en Architecture des systèmes d'Information", descEn:"Software development, mobile applications, connected systems, and information system architecture.", descFr:"Développement logiciel, Application Mobile, Systèmes connectés et Architecture des systèmes d’information." },
+  { school:"Institut supérieur des etudes technologique — Djerba, Tunisia", period:"2020 – 2023", degree:"Licence en Développement des Systèmes d’Information", descEn:"Information systems development, databases, software architecture, web and mobile applications.", descFr:"développement des systèmes d'information, bases de données, architectures logicielles, applications web et mobiles." }
 ];
 
 const skills = [
@@ -86,6 +86,8 @@ header{position:sticky;top:0;z-index:100;background:rgba(6,8,16,.9);backdrop-fil
 .nav-controls{display:flex;align-items:center;gap:.75rem;}
 .btn-cv{background:linear-gradient(135deg,var(--cyan-dark),var(--blue));color:#fff;padding:.45rem 1rem;border-radius:8px;font-weight:700;font-size:.82rem;display:inline-flex;align-items:center;gap:.4rem;text-decoration:none;transition:all .2s;box-shadow:0 4px 15px rgba(2,132,199,.4);}
 .btn-cv:hover{transform:translateY(-1px);box-shadow:0 8px 25px rgba(2,132,199,.5);}
+.btn-cv-view{background:rgba(255,255,255,.07);border:1px solid var(--border);color:var(--text);padding:.45rem .9rem;border-radius:8px;font-weight:700;font-size:.82rem;display:inline-flex;align-items:center;gap:.4rem;text-decoration:none;transition:all .2s;}
+.btn-cv-view:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-1px);background:rgba(14,165,233,.12);}
 .lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text-muted);font-family:var(--mono);font-size:.75rem;font-weight:700;padding:.38rem .7rem;border-radius:7px;cursor:pointer;transition:all .2s;}
 .lang-btn:hover{border-color:var(--cyan);color:var(--cyan);}
 body.lang-en .fr{display:none!important;}
@@ -241,9 +243,13 @@ footer a{color:var(--cyan);text-decoration:none;}
     </ul>
     <div class="nav-controls">
       <button class="lang-btn" id="langBtn">🌐 FR / EN</button>
-      <a href="/CV_Fahd_BELHIBA_Mobile.pdf" download class="btn-cv">
+      <a href="/Belhiba Fahd CV.pdf" target="_blank" rel="noopener noreferrer" class="btn-cv-view" title="View CV PDF">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span class="en">View CV</span><span class="fr">Voir CV</span>
+      </a>
+      <a href="/Belhiba Fahd CV.pdf" download="Belhiba Fahd CV.pdf" class="btn-cv" title="Download CV PDF">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        CV PDF
+        <span class="en">Download</span><span class="fr">Télécharger</span>
       </a>
     </div>
   </div>
@@ -267,10 +273,10 @@ footer a{color:var(--cyan);text-decoration:none;}
         <span class="fr">Étudiant Master <strong>IT4SSM</strong> — INSA Hauts-de-France</span>
       </p>
       <p class="hero-bio en">
-        Passionate about native Android, connected vehicle systems, BLE/Wi-Fi Direct protocols, and sustainable mobility. Seeking a 6-month final-year internship from March 2027.
+        Engineering student in smart mobility, specializing in embedded systems, IoT, and data processing (Python). Developing connected solutions from ESP32 & ROS 2 to cloud infrastructure and native Android applications. Rigorous and motivated, seeking a 6-month internship starting March 2027.
       </p>
       <p class="hero-bio fr">
-        Passionné par Android natif, les systèmes embarqués connectés, BLE/Wi-Fi Direct et la mobilité durable. Je recherche un stage de fin d'études de 6 mois dès mars 2027.
+        Étudiant ingénieur en mobilité intelligente, spécialisé en systèmes embarqués, IoT et traitement de données (Python). Je développe des solutions connectées, de l'ESP32 et ROS 2 jusqu'au cloud et aux applications Android. Rigoureux et motivé, je cherche un stage de 6 mois à partir de mars 2027.
       </p>
       <div class="meta-pills">
         <div class="meta-pill">📍 Valenciennes (59300), France</div>
@@ -279,11 +285,19 @@ footer a{color:var(--cyan);text-decoration:none;}
         <div class="meta-pill">💼 <a href="https://github.com/fahedbelhiba" target="_blank">fahedbelhiba</a></div>
       </div>
       <div class="hero-btns">
-        <a href="mailto:belhibafahd@outlook.fr" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <span class="en">Get in Touch</span><span class="fr">Me Contacter</span>
+        <a href="/Belhiba Fahd CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span class="en">View CV</span><span class="fr">Voir le CV</span>
         </a>
-        <a href="#projects" class="btn btn-secondary"><span class="en">View 13 Projects →</span><span class="fr">Voir les 13 Projets →</span></a>
+        <a href="/Belhiba Fahd CV.pdf" download="Belhiba Fahd CV.pdf" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span class="en">Download CV</span><span class="fr">Télécharger CV</span>
+        </a>
+        <a href="mailto:belhibafahd@outlook.fr" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span class="en">Contact</span><span class="fr">Me Contacter</span>
+        </a>
+        <a href="#projects" class="btn btn-secondary"><span class="en">View Projects →</span><span class="fr">Projets →</span></a>
       </div>
     </div>
 
@@ -467,10 +481,10 @@ footer a{color:var(--cyan);text-decoration:none;}
       </div>
 
       <div class="profile-pitch en">
-        Final-Year Master's student in <strong class="highlight">IT4SSM (INSA Hauts-de-France)</strong> specializing in software development, connected systems, and smart mobility (<strong class="highlight">Native Android, BLE & IoT</strong>). Seeking a <strong class="highlight">6-month final-year internship starting March 2027</strong> in <strong class="highlight">Native Android Development, Connected Vehicle Systems, Embedded/IoT Engineering, or Mobile Software Engineering</strong>.
+        Engineering student in smart mobility, specializing in embedded systems, IoT, and data processing (Python). Developing connected solutions from ESP32 & ROS 2 to cloud infrastructure and native Android applications. Rigorous and motivated, seeking a 6-month final-year internship starting March 2027.
       </div>
       <div class="profile-pitch fr">
-        Étudiant en dernière année de Master en <strong class="highlight">IT4SSM (INSA Hauts-de-France)</strong> spécialisé en développement logiciel, systèmes connectés et mobilité intelligente (<strong class="highlight">Android natif, BLE & IoT</strong>). Je recherche un <strong class="highlight">stage de fin d'études de 6 mois dès mars 2027</strong> en <strong class="highlight">Développement Android Natif, Systèmes Véhiculaires Connectés, Ingénierie IoT ou Ingénierie Logicielle Mobile</strong>.
+        Étudiant ingénieur en mobilité intelligente, spécialisé en systèmes embarqués, IoT et traitement de données (Python). Je développe des solutions connectées, de l'ESP32 et ROS 2 jusqu'au cloud et aux applications Android. Rigoureux et motivé, je cherche un stage de 6 mois à partir de mars 2027.
       </div>
 
       <div class="roles-grid">
@@ -528,7 +542,15 @@ footer a{color:var(--cyan);text-decoration:none;}
       </div>
 
       <div class="profile-actions">
-        <a href="mailto:belhibafahd@outlook.fr" class="btn btn-primary">
+        <a href="/Belhiba Fahd CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span class="en">View CV</span><span class="fr">Voir le CV</span>
+        </a>
+        <a href="/Belhiba Fahd CV.pdf" download="Belhiba Fahd CV.pdf" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span class="en">Download CV</span><span class="fr">Télécharger CV</span>
+        </a>
+        <a href="mailto:belhibafahd@outlook.fr" class="btn btn-secondary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           <span class="en">Contact via Email</span><span class="fr">Contacter par Email</span>
         </a>
